@@ -35,6 +35,7 @@ public class SimpleArray<T> implements Iterable<T> {
      * @param model
      */
     public void set(int index, T model) {
+        Objects.checkIndex(index, size);
         data[index] = model;
     }
 
