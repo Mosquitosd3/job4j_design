@@ -36,10 +36,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
             @Override
             public boolean hasNext() {
-                while (point < list.length && list[point] == null) {
-                    point++;
-                }
-                return point < list.length;
+                return point < size;
             }
 
             @Override
@@ -51,7 +48,9 @@ public class SimpleArray<T> implements Iterable<T> {
                     throw new ConcurrentModificationException();
                 }
                 return list[point++];
+
             }
+
         };
         return iterator;
     }
