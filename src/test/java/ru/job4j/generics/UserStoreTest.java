@@ -16,7 +16,7 @@ public class UserStoreTest {
     }
 
     @Test
-    public void whenReplaceUser(){
+    public void whenReplaceUser() {
         UserStore userStore = new UserStore();
         User user = new User("1");
         userStore.add(user);
