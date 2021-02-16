@@ -46,6 +46,7 @@ public class SimpleLinked<E> implements Iterable<E> {
     @Override
     public Iterator<E> iterator() {
         Iterator<E> iterator = new Iterator<E>() {
+            Node<E> node = first;
            int expectedModCount = modCount;
            int point = 0;
            @Override
@@ -61,9 +62,10 @@ public class SimpleLinked<E> implements Iterable<E> {
                if (!hasNext()) {
                    throw new NoSuchElementException();
                }
-               E el = (E) get(point);
+             E rsl = first.value;
+               first = first.next;
                point++;
-               return el;
+               return rsl;
            }
        };
        return iterator;
