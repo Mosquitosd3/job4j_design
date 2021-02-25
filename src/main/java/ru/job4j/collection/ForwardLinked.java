@@ -39,13 +39,14 @@ public class ForwardLinked<T> implements Iterable<T> {
             deleteEl = head.value;
             head = null;
         } else {
-            while (lust.next != null) {
-                beforeLust = lust;
-                lust = lust.next;
-            }
-            deleteEl = beforeLust.value;
+           while (lust.next != null) {
+               beforeLust = lust;
+               lust = lust.next;
+           }
+           deleteEl = beforeLust.next.value;
+           beforeLust.next = null;
         }
-        return deleteEl;
+         return deleteEl;
     }
 
     public void revert() {

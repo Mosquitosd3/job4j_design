@@ -3,19 +3,23 @@ package ru.job4j.collection;
 public class SimpleQueue<T> {
     private final SimpleStack<T> in = new SimpleStack<>();
     private final SimpleStack<T> out = new SimpleStack<>();
-    private int size = 0;
+    private int inSize = 0;
+    private int outSize = 0;
 
     public T poll() {
-        for (int i = 0; i < size; i++) {
-            T node = in.pop();
-            out.push(node);
+        if (outSize == 0) {
+            for (int i = 0; i < inSize; i++) {
+                out.push(in.pop());
+                outSize++;
+            }
+            inSize = 0;
         }
-        size--;
+        outSize--;
         return out.pop();
     }
 
     public void push(T value) {
         in.push(value);
-        size++;
+        inSize++;
     }
 }
