@@ -27,6 +27,10 @@ public class SimpleArray<T> implements Iterable<T> {
         modCount++;
     }
 
+    public int getSize() {
+        return size;
+    }
+
     @Override
     public Iterator<T> iterator() {
         Iterator iterator = new Iterator() {
