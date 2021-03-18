@@ -6,7 +6,7 @@ public class ResultFileMultiple {
 
     public void inputInFile(int size) {
         int[][] table = multiple(size);
-        try (FileOutputStream out = new FileOutputStream("multiple.txt")) {
+        try (FileOutputStream out = new FileOutputStream("./files/multiple.txt")) {
             for (int[] row : table) {
                 for (int cell : row) {
                     out.write(String.valueOf(cell).getBytes());

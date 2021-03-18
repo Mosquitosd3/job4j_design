@@ -23,6 +23,6 @@ public class LogFilter {
     }
 
     public static void main(String[] args) {
-        save(filter("log.txt"), "logFilter.txt");
+        save(filter("./files/log.txt"), "./files/logFilter.txt");
     }
 }
