@@ -8,8 +8,8 @@ public class DuplicatesFinder {
     public static void main(String[] args) throws IOException {
         DuplicatesVisitor visitor = new DuplicatesVisitor();
         Files.walkFileTree(Path.of("./"), visitor);
-        for (FileProperty file : visitor.getFileInfo()) {
-            System.out.println("File Name: " + file.getName() + " size: " + file.getSize());
+        for (String name : visitor.getFileInfo().keySet()) {
+            System.out.println("Fail name: " + name + " Size: " + visitor.getFileInfo().get(name));
         }
     }
 }
