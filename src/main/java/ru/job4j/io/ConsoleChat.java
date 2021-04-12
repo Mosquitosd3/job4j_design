@@ -4,6 +4,7 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -22,14 +23,16 @@ public class ConsoleChat {
     public void run() {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(path, Charset.forName("WINDOWS-1251"), true));
              BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            List<String> line = Files.readAllLines(Paths.get(botAnswers));
+            List<String> logChat = new ArrayList<>();
             String read = reader.readLine();
             while (!read.equals(OUT)) {
                 if (read.equals(STOP)) {
-                    out.write(read + System.lineSeparator());
+                    logChat.add(read);
                     System.out.println(read);
                     while (!read.equals(CONTINUE) && !read.equals(OUT)) {
                         read = reader.readLine();
-                        out.write(read + System.lineSeparator());
+                        logChat.add(read);
                         System.out.println(read);
                     }
                     if (read.equals(OUT)) {
@@ -37,21 +40,24 @@ public class ConsoleChat {
                     }
                     read = reader.readLine();
                 }
-                String ans = answers();
-                out.write(read + System.lineSeparator());
+                String ans = line.get(ThreadLocalRandom.current().nextInt(0, line.size() - 1));
+                logChat.add(read);
                 System.out.println(read);
-                out.write(ans + System.lineSeparator());
+                logChat.add(ans);
                 System.out.println(ans);
                 read = reader.readLine();
+
             }
+            logChat.stream().forEach(el -> {
+                try {
+                    out.write(el + System.lineSeparator());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private String answers() throws IOException {
-        List<String> line = Files.readAllLines(Paths.get(botAnswers));
-        return line.get(ThreadLocalRandom.current().nextInt(0, line.size() - 1));
     }
 
     public static void main(String[] args) {
