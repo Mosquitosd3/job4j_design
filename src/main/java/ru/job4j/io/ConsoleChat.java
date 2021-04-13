@@ -21,10 +21,9 @@ public class ConsoleChat {
     }
 
     public void run() {
-        try (BufferedWriter out = new BufferedWriter(new FileWriter(path, Charset.forName("WINDOWS-1251"), true));
-             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+        List<String> logChat = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             List<String> line = Files.readAllLines(Paths.get(botAnswers));
-            List<String> logChat = new ArrayList<>();
             String read = reader.readLine();
             while (!read.equals(OUT)) {
                 if (read.equals(STOP)) {
@@ -46,11 +45,15 @@ public class ConsoleChat {
                 logChat.add(ans);
                 System.out.println(ans);
                 read = reader.readLine();
-
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(path, Charset.forName("WINDOWS-1251"), true))) {
             logChat.stream().forEach(el -> {
                 try {
-                    out.write(el + System.lineSeparator());
+                    out.write(el);
+                    out.newLine();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
