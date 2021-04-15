@@ -46,9 +46,13 @@ public class ConsoleChat {
                 System.out.println(ans);
                 read = reader.readLine();
             }
+            writeChatToFile(logChat);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void writeChatToFile(List<String> logChat) {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(path, Charset.forName("WINDOWS-1251"), true))) {
             logChat.stream().forEach(el -> {
                 try {
@@ -62,7 +66,6 @@ public class ConsoleChat {
             e.printStackTrace();
         }
     }
-
     public static void main(String[] args) {
         ArgsName arg = ArgsName.of(args);
         ConsoleChat cc = new ConsoleChat(arg.get("path"), arg.get("botAnswers"));
