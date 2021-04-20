@@ -27,6 +27,26 @@ public class Owner {
         this.other = other;
     }
 
+    public boolean isSex() {
+        return sex;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Pet getAnimal() {
+        return animal;
+    }
+
+    public String[] getOther() {
+        return other;
+    }
+
     @Override
     public String toString() {
         return "Owner{" +
