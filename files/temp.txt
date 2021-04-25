@@ -1,0 +1,8 @@
+C:\projects\job4j_design\.idea\checkstyleidea-libs\readme.txt
+C:\projects\job4j_design\files\BotAnswers.txt
+C:\projects\job4j_design\files\Chat.txt
+C:\projects\job4j_design\files\even.txt
+C:\projects\job4j_design\files\input.txt
+C:\projects\job4j_design\files\log.txt
+C:\projects\job4j_design\files\logFilter.txt
+C:\projects\job4j_design\files\serverUnavailable.txt
