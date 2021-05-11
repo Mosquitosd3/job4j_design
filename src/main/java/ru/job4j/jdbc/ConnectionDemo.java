@@ -1,6 +1,7 @@
 package ru.job4j.jdbc;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -12,8 +13,9 @@ public class ConnectionDemo {
       Class.forName("org.postgresql.Driver");
       Properties props = new Properties();
       ClassLoader loader = ConnectionDemo.class.getClassLoader();
-
-      props.load(loader.getResourceAsStream("app.properties"));
+      try (InputStream io = loader.getResourceAsStream("app.properties")) {
+          props.load(io);
+      }
       String url = props.getProperty("url");
       String login = props.getProperty("login");
       String password = props.getProperty("password");
