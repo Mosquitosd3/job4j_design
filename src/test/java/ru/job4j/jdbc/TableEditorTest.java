@@ -45,7 +45,8 @@ public class TableEditorTest {
         tableEditor.addColumn(tableName, "test2", "varchar(255)");
         tableEditor.dropColumn(tableName, "test2");
         assertThat(tableEditor.getScheme(tableName), is(builder.toString()));
-    }@Ignore
+    }
+    @Ignore
     @Test
     public void dropTable() {
         tableEditor.dropTable(tableName);
