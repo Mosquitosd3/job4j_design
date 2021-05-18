@@ -19,7 +19,7 @@ public class ConnectionDemo {
       String url = props.getProperty("url");
       String login = props.getProperty("login");
       String password = props.getProperty("password");
-      try (Connection connection = DriverManager.getConnection(url, login, password)){
+      try (Connection connection = DriverManager.getConnection(url, login, password)) {
           DatabaseMetaData metaData = connection.getMetaData();
           System.out.println(metaData.getURL());
           System.out.println(metaData.getUserName());

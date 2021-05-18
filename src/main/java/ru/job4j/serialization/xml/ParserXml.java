@@ -11,7 +11,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 
 public class ParserXml {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         Owner owner = new Owner(false, 1234, "Nikolay", new Pet("Цезарь"), "+7(111) 111-11-11", "baker street 221b");
         JAXBContext context = JAXBContext.newInstance(Owner.class);
         Marshaller marshaller = context.createMarshaller();

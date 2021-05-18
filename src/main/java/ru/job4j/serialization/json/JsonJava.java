@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 public class JsonJava {
     public static void main(String[] args) {
-        final Owner owner = new Owner(false,1234, "Nikolay", new Pet("Caesar"), "+7(111)-111-11-11", "baker street 221b");
+        final Owner owner = new Owner(false, 1234, "Nikolay", new Pet("Caesar"), "+7(111)-111-11-11", "baker street 221b");
         JSONObject jsonAnimal = new JSONObject("{\"name\":\"Caesar\"}");
 
         String[] arr = owner.getOther();

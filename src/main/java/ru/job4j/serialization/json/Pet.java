@@ -8,8 +8,6 @@ public class Pet {
     @XmlAttribute
     private String name;
 
-    public Pet () {}
-
     public Pet(String name) {
         this.name = name;
     }
@@ -20,8 +18,9 @@ public class Pet {
 
     @Override
     public String toString() {
-        return "Pet{" +
-                "name='" + name + '\'' +
-                '}';
+        return "Pet{"
+                + "name='"
+                + name + '\''
+                + '}';
     }
 }

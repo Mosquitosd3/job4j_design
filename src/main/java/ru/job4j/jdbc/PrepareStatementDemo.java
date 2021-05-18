@@ -47,7 +47,7 @@ public class PrepareStatementDemo {
     }
 
     public City insert(City city) {
-        try (PreparedStatement statement = connection.prepareStatement("insert into cities(name, population) values(?, ?)", Statement.RETURN_GENERATED_KEYS)){
+        try (PreparedStatement statement = connection.prepareStatement("insert into cities(name, population) values(?, ?)", Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, city.getName());
             statement.setInt(2, city.getId());
             statement.execute();
@@ -62,7 +62,7 @@ public class PrepareStatementDemo {
 
     public boolean update(City city) {
         boolean result = false;
-        try (PreparedStatement statement = connection.prepareStatement("update cities set name = ?, population = ? where id = ?")){
+        try (PreparedStatement statement = connection.prepareStatement("update cities set name = ?, population = ? where id = ?")) {
             statement.setString(1, city.getName());
             statement.setInt(2, city.getPopulation());
             statement.setInt(3, city.getId());
@@ -75,7 +75,7 @@ public class PrepareStatementDemo {
 
     public boolean delete(int id) {
         boolean result = false;
-        try (PreparedStatement statement = connection.prepareStatement("delete from cities where id = ?") ){
+        try (PreparedStatement statement = connection.prepareStatement("delete from cities where id = ?")) {
             statement.setInt(1, id);
             result = statement.executeUpdate() > 0;
         } catch (SQLException throwables) {
@@ -87,7 +87,7 @@ public class PrepareStatementDemo {
     private void connectionInit() {
         Properties properties = new Properties();
         ClassLoader loader = this.getClass().getClassLoader();
-        try (InputStream io = loader.getResourceAsStream("app.properties")){
+        try (InputStream io = loader.getResourceAsStream("app.properties")) {
             properties.load(io);
         } catch (IOException e) {
             e.printStackTrace();

@@ -9,13 +9,13 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 public class TableEditorTest {
-    String table_name = "test_table";
+    String tableName = "test_table";
     Properties properties = new Properties();
     TableEditor tableEditor = new TableEditor(properties);
 
     @Test
     public void createTable() {
-        tableEditor.createTable(table_name);
+        tableEditor.createTable(tableName);
     }
 
     @Test
@@ -23,8 +23,8 @@ public class TableEditorTest {
         StringBuilder builder = new StringBuilder();
         builder.append(String.format("%-15s %-15s%n", "column", "type"));
         builder.append(String.format("%-15s %-15s%n", "test", "varchar"));
-        tableEditor.addColumn(table_name, "test", "varchar(255)");
-        assertThat(tableEditor.getScheme(table_name), is(builder.toString()));
+        tableEditor.addColumn(tableName, "test", "varchar(255)");
+        assertThat(tableEditor.getScheme(tableName), is(builder.toString()));
     }
 
     @Test
@@ -32,8 +32,8 @@ public class TableEditorTest {
         StringBuilder builder = new StringBuilder();
         builder.append(String.format("%-15s %-15s%n", "column", "type"));
         builder.append(String.format("%-15s %-15s%n", "rename", "varchar"));
-        tableEditor.renameColumn(table_name, "test", "rename");
-        assertThat(tableEditor.getScheme(table_name), is(builder.toString()));
+        tableEditor.renameColumn(tableName, "test", "rename");
+        assertThat(tableEditor.getScheme(tableName), is(builder.toString()));
     }
 
     @Test
@@ -41,13 +41,13 @@ public class TableEditorTest {
         StringBuilder builder = new StringBuilder();
         builder.append(String.format("%-15s %-15s%n", "column", "type"));
         builder.append(String.format("%-15s %-15s%n", "rename", "varchar"));
-        tableEditor.addColumn(table_name, "test2", "varchar(255)");
-        tableEditor.dropColumn(table_name, "test2");
-        assertThat(tableEditor.getScheme(table_name), is(builder.toString()));
+        tableEditor.addColumn(tableName, "test2", "varchar(255)");
+        tableEditor.dropColumn(tableName, "test2");
+        assertThat(tableEditor.getScheme(tableName), is(builder.toString()));
     }
 
     @Test
     public void dropTable() {
-        tableEditor.dropTable(table_name);
+        tableEditor.dropTable(tableName);
     }
 }

@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 
-public class TableEditor implements AutoCloseable{
+public class TableEditor implements AutoCloseable {
     private Connection connection;
     private Properties properties;
 
@@ -43,7 +43,7 @@ public class TableEditor implements AutoCloseable{
     public String getScheme(String tableName) throws SQLException {
         StringBuilder scheme = new StringBuilder();
         DatabaseMetaData metaData = connection.getMetaData();
-        try(ResultSet columns = metaData.getColumns(null, null, tableName, null)) {
+        try (ResultSet columns = metaData.getColumns(null, null, tableName, null)) {
             scheme.append(String.format("%-15s %-15s%n", "column", "type"));
             while (columns.next()) {
                 scheme.append(String.format("%-15s %-15s%n",
@@ -61,7 +61,7 @@ public class TableEditor implements AutoCloseable{
             e.printStackTrace();
         }
         ClassLoader loader = this.getClass().getClassLoader();
-        try (InputStream io = loader.getResourceAsStream("app.properties")){
+        try (InputStream io = loader.getResourceAsStream("app.properties")) {
             properties.load(io);
         } catch (IOException e) {
             e.printStackTrace();
@@ -76,8 +76,8 @@ public class TableEditor implements AutoCloseable{
         }
     }
 
-    private void execute (String sql) {
-        try (Statement statement = connection.createStatement()){
+    private void execute(String sql) {
+        try (Statement statement = connection.createStatement()) {
             statement.execute(sql);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
